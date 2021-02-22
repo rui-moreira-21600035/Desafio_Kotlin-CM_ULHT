@@ -1,6 +1,8 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-class Date(){
+import java.util.Date
+
+class Date : Date{
     var dia: Int = 0
         get() = field
         set(value) {field = value}

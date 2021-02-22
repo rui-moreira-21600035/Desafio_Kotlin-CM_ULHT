@@ -1,6 +1,7 @@
 package pt.ulusofona.cm.kotlin.challenge
 
 import pt.ulusofona.cm.kotlin.challenge.models.*
+import pt.ulusofona.cm.kotlin.challenge.models.Date
 
 fun main() {
     // aqui escreves o código do programa

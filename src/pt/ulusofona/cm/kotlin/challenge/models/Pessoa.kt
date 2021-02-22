@@ -1,6 +1,7 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
 import pt.ulusofona.cm.kotlin.challenge.exceptions.*
+import pt.ulusofona.cm.kotlin.challenge.models.Date
 
 class Pessoa() {
 
@@ -57,7 +58,6 @@ class Pessoa() {
         return javaClass.simpleName.toString() + " | " + nome + " | " + dataDeNascimento + " | " +
                 posicao.toString()
     }
-
 }
 
 

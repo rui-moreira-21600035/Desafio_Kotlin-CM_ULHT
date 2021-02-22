@@ -1,6 +1,6 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-import pt.ulusofona.cm.kotlin.challenge.models.Date
+import pt.ulusofona.cm.kotlin.challenge.models.*
 
 open class Veiculo(identificador: String) {
     open var identificador: String = String()

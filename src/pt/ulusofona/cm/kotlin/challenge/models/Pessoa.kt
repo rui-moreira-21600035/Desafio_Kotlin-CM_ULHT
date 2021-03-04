@@ -10,7 +10,7 @@ import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 
 data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
-    @Volatile var veiculos = mutableListOf<Veiculo>()
+    var veiculos = mutableListOf<Veiculo>()
     var carta: Carta? = null
     var posicao: Posicao
 

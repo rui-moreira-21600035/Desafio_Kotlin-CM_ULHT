@@ -80,7 +80,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
     }
 
     override fun toString(): String{
-        return javaClass.simpleName.toString() + " | " + nome + " | " + dataDeNascimento + " | " +
+        return javaClass.simpleName.toString() + " | " + nome + " | " + SimpleDateFormat("dd-MM-yyyy").format(dataDeNascimento) + " | " +
                 posicao.toString()
     }
 

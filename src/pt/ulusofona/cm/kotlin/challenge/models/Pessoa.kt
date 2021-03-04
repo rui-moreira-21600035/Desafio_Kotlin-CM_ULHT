@@ -9,7 +9,7 @@ import java.time.temporal.ChronoUnit
 import java.util.*
 
 data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
-    var veiculos = mutableListOf<Veiculo>()
+    @Volatile var veiculos = mutableListOf<Veiculo>()
     var carta: Carta? = null
     var posicao: Posicao
 
@@ -17,7 +17,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
         this.veiculos.add(veiculo)
     }
 
-    inline fun pesquisarVeiculo(identificador: String): Veiculo {
+    fun pesquisarVeiculo(identificador: String): Veiculo {
         for (veiculo in veiculos) {
             if (veiculo.identificador.equals(identificador)) {
                 return veiculo
@@ -27,7 +27,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     }
 
-    inline fun venderVeiculo(identificador: String, comprador: Pessoa){
+    fun venderVeiculo(identificador: String, comprador: Pessoa){
         var veiculoAVender: Veiculo
         for (veiculo in veiculos) {
             if (veiculo.identificador.equals(identificador)) {

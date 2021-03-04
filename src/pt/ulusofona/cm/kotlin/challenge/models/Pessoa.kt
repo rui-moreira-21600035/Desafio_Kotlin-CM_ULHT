@@ -29,16 +29,18 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     @Throws(VeiculoNaoEncontradoException::class)
     fun venderVeiculo(identificador: String, comprador: Pessoa){
-        var veiculoAVender: Veiculo
+        lateinit var veiculoAVender: Veiculo
         for (veiculo in veiculos) {
             if (veiculo.identificador.equals(identificador)) {
                 veiculoAVender = veiculo
-                this.veiculos.remove(veiculo)
-                comprador.veiculos.add(veiculoAVender)
-                return
             }
         }
-        return throw VeiculoNaoEncontradoException("Veiculo não encontrado")
+        if (veiculoAVender != null) {
+            this.veiculos.remove(veiculoAVender)
+            comprador.veiculos.add(veiculoAVender)
+        } else {
+            return throw VeiculoNaoEncontradoException("Veiculo não encontrado")
+        }
     }
 
     @Throws(AlterarPosicaoException::class, PessoaSemCartaException::class)

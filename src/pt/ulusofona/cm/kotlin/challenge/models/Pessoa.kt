@@ -1,32 +1,15 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
 import pt.ulusofona.cm.kotlin.challenge.exceptions.*
-import pt.ulusofona.cm.kotlin.challenge.models.Date
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
-class Pessoa() {
-
-    private var nome: String = String()
-        get() = field
-        set(value) {field = value}
-
-    private var veiculos = mutableListOf<Veiculo>()
-        get() = field
-        set(value) {field = value}
-
-    private var dataDeNascimento: Date = Date()
-        get() = field
-        set(value) {field = value}
-
-    private var carta: Carta = Carta()
-        get() = field
-        set(value) {field = value}
-
-    private var posicao: Posicao = Posicao()
-
-    constructor(nome: String, dataDeNascimento: Date) : this(){
-        this.nome = nome
-        this.dataDeNascimento = dataDeNascimento
-    }
+data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
+    var veiculos = mutableListOf<Veiculo>()
+    var carta: Carta? = null
+    var posicao: Posicao
 
     fun comprarVeiculo(veiculo: Veiculo){
         this.veiculos.add(veiculo)
@@ -57,6 +40,15 @@ class Pessoa() {
     override fun toString(): String{
         return javaClass.simpleName.toString() + " | " + nome + " | " + dataDeNascimento + " | " +
                 posicao.toString()
+    }
+
+    override fun moverPara(x: Int, y: Int) {
+        posicao.alterarPosicaoPara(x, y)
+    }
+
+    init {
+        posicao = Posicao(0, 0)
+        veiculos = ArrayList()
     }
 }
 

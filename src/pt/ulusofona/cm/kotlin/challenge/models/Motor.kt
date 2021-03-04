@@ -1,25 +1,30 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-class Motor() {
-    private var cavalos: Int = 0
-        get() = field
-        set(value) {
-            field = value
-        }
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
+import pt.ulusofona.cm.kotlin.challenge.exceptions.*
 
-    private var cilindrada: Int = 0
-        get() = field
-        set(value) {
-            field = value
-        }
+class Motor(var cavalos: Int, var cilindrada: Int) : Ligavel {
+    var ligado: Boolean = false
 
-    private var ligado: Boolean = false
-        get() = field
-        set(value) {
-            field = value
+    override fun ligar() {
+        if (this.ligado) {
+            throw VeiculoLigadoException("O Veiculo já se encontra ligado")
+        } else {
+            this.ligado= true
         }
+    }
 
-    constructor(cavalos: Int, cilindrada: Int) : this()
+    override fun desligar() {
+        if (!this.ligado) {
+            throw VeiculoDesligadoException("O Veiculo já se encontra desligado")
+        } else {
+            this.ligado = false
+        }
+    }
+
+    override fun estaLigado(): Boolean {
+        return this.ligado
+    }
 
     override fun toString(): String{
         return javaClass.simpleName.toString() + " | " + this.cavalos + " | " + this.cilindrada

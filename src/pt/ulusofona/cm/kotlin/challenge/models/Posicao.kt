@@ -1,20 +1,23 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-class Posicao(){
-    var x: Int = 0
-    var y: Int = 0
+import pt.ulusofona.cm.kotlin.challenge.exceptions.*
 
-    constructor(x: Int, y: Int) : this() {
-        this.x = x
-        this.y = y
-    }
+data class Posicao(var x: Int, var y: Int){
 
-    fun alterarPosicaoPara(x: Int, y: Int){
-        this.x = x
-        this.y = y
+    fun alterarPosicaoPara(x: Int, y: Int) {
+        if (this.x == x && this.y == y) {
+            throw AlterarPosicaoException("O Veiculo já se encontra nesta posição")
+        } else {
+            this.x = x
+            this.y = y
+        }
     }
 
     override fun toString(): String{
         return javaClass.simpleName.toString() + " | x:" + this.x + " | y:" + this.y
+    }
+    init {
+        this.x = x
+        this.y = y
     }
 }

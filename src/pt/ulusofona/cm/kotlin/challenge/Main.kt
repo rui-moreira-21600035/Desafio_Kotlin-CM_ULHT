@@ -1,12 +1,15 @@
 package pt.ulusofona.cm.kotlin.challenge
 
 import pt.ulusofona.cm.kotlin.challenge.models.*
-import pt.ulusofona.cm.kotlin.challenge.models.Date
+import java.time.LocalDate
+import java.util.*
+import java.text.SimpleDateFormat
+
 
 fun main() {
     // aqui escreves o código do programa
-    var pessoa1 = Pessoa("Rui", Date(10, 2, 1992))
+    //val pessoa1 = Pessoa("Rui", LocalDate.of(1992,2,10))
 
-    println(pessoa1.toString())
+    //println(pessoa1.toString())
     //pessoa1.pesquisarVeiculo("ABC") // Lança exception
 }

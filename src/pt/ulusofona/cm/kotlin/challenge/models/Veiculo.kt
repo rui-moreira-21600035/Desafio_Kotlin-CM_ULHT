@@ -1,23 +1,19 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import pt.ulusofona.cm.kotlin.challenge.models.*
+import java.util.*
 
-open class Veiculo(identificador: String) {
-    open var identificador: String = String()
-        get() = field
-        set(value) {field = value}
+open abstract class Veiculo(var identificador: String) : Movimentavel {
+    var posicao: Posicao
+    var dataDeAquisicao: Date
 
-    open var posicao: Posicao = Posicao()
-        get() = field
-        set(value) {field = value}
-
-    open var dataDeAquisicao: Date = Date()
-        get() = field
-        set(value) {field = value}
-
-    open fun requerCarta(): Boolean {
-        return false
+    init {
+        this.posicao = Posicao(0,0)
+        this.dataDeAquisicao = Date()
     }
+
+    abstract fun requerCarta(): Boolean
 
     override fun toString(): String{
         return javaClass.simpleName.toString() + " | " + identificador + " | " + dataDeAquisicao + " | " +

@@ -10,7 +10,7 @@ import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 
 data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
-    @Volatile var veiculos = CopyOnWriteArrayList<Veiculo>()
+    @Volatile var veiculos = mutableListOf<Veiculo>()
     var carta: Carta? = null
     var posicao: Posicao
 
@@ -35,6 +35,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
                 veiculoAVender = veiculo
                 this.veiculos.remove(veiculo)
                 comprador.veiculos.add(veiculoAVender)
+                return
             }
         }
         return throw VeiculoNaoEncontradoException("Veiculo não encontrado")
@@ -87,7 +88,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     init {
         posicao = Posicao(0, 0)
-        veiculos = CopyOnWriteArrayList<Veiculo>()
+        veiculos = mutableListOf<Veiculo>()
     }
 }
 

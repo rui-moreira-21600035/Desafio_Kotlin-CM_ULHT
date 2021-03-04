@@ -14,7 +14,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
     var carta: Carta? = null
     var posicao: Posicao
 
-    inline fun comprarVeiculo(veiculo: Veiculo){
+    fun comprarVeiculo(veiculo: Veiculo){
         this.veiculos.add(veiculo)
     }
 

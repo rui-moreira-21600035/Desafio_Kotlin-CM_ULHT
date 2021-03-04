@@ -7,18 +7,17 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
-import kotlin.collections.ArrayList
 
 data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
-    var veiculos = ArrayList<Veiculo>()
+    var veiculos = mutableListOf<Veiculo>()
     var carta: Carta? = null
     var posicao: Posicao
 
-    fun comprarVeiculo(veiculo: Veiculo){
+    inline fun comprarVeiculo(veiculo: Veiculo){
         this.veiculos.add(veiculo)
     }
 
-    fun pesquisarVeiculo(identificador: String): Veiculo {
+    inline fun pesquisarVeiculo(identificador: String): Veiculo {
         for (veiculo in veiculos) {
             if (veiculo.identificador.equals(identificador)) {
                 return veiculo
@@ -28,7 +27,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     }
 
-    fun venderVeiculo(identificador: String, comprador: Pessoa){
+    inline fun venderVeiculo(identificador: String, comprador: Pessoa){
         var veiculoAVender: Veiculo
         for (veiculo in veiculos) {
             if (veiculo.identificador.equals(identificador)) {
@@ -87,7 +86,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     init {
         posicao = Posicao(0, 0)
-        veiculos = ArrayList<Veiculo>()
+        veiculos = mutableListOf<Veiculo>()
     }
 }
 

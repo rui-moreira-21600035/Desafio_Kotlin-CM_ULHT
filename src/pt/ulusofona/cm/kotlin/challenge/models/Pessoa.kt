@@ -7,9 +7,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
+import java.util.concurrent.CopyOnWriteArrayList
 
 data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
-    @Volatile var veiculos = mutableListOf<Veiculo>()
+    @Volatile var veiculos = CopyOnWriteArrayList<Veiculo>()
     var carta: Carta? = null
     var posicao: Posicao
 
@@ -86,7 +87,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     init {
         posicao = Posicao(0, 0)
-        veiculos = mutableListOf<Veiculo>()
+        veiculos = CopyOnWriteArrayList<Veiculo>()
     }
 }
 

@@ -39,6 +39,19 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
         return throw VeiculoNaoEncontradoException("Veiculo não encontrado")
     }
 
+    @Throws(AlterarPosicaoException::class, PessoaSemCartaException::class)
+    fun moverVeiculoPara(identificador: String, x: Int, y: Int) {
+        for (veiculo in veiculos) {
+            if (veiculo.identificador.equals(identificador) ) {
+                if (veiculo.requerCarta() && !temCarta()) {
+                    throw PessoaSemCartaException(nome + " não tem carta para conduzir o veículo indicado")
+                }
+                veiculo.moverPara(x, y)
+                break
+            }
+        }
+    }
+
     override fun moverPara(x: Int, y: Int) {
         posicao.alterarPosicaoPara(x, y)
     }
@@ -56,10 +69,14 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
         val menorDeIdade = ChronoUnit.YEARS.between(localDate, LocalDate.now())
         if (menorDeIdade < 18) {
-            throw MenorDeIdadeException("Não pode tirar a carta, Menor de idade")
+            throw MenorDeIdadeException("Não tem idade suficiente para tirar a carta")
         } else {
             carta = Carta()
         }
+    }
+
+    fun temCarta(): Boolean {
+        return if (carta == null) false else true
     }
 
     override fun toString(): String{

@@ -9,7 +9,7 @@ class Bicicleta(identificador: String) : Veiculo(identificador){
     }
 
     override fun toString(): String{
-        return javaClass.kotlin.toString() + " | " + identificador + " | " + SimpleDateFormat("dd-MM-yyyy").format(dataDeAquisicao) + " | " +
+        return javaClass.simpleName.toString() + " | " + identificador + " | " + SimpleDateFormat("dd-MM-yyyy").format(dataDeAquisicao) + " | " +
                 posicao.toString()
     }
 

@@ -7,9 +7,10 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
-    var veiculos = mutableListOf<Veiculo>()
+    var veiculos = ArrayList<Veiculo>()
     var carta: Carta? = null
     var posicao: Posicao
 
@@ -86,7 +87,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     init {
         posicao = Posicao(0, 0)
-        veiculos = mutableListOf<Veiculo>()
+        veiculos = ArrayList<Veiculo>()
     }
 }
 

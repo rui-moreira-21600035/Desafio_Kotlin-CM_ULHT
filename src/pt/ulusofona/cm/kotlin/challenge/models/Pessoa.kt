@@ -7,7 +7,6 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
-import java.util.concurrent.CopyOnWriteArrayList
 
 data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movimentavel {
     var veiculos = mutableListOf<Veiculo>()
@@ -28,6 +27,7 @@ data class Pessoa(val nome: String, private val dataDeNascimento: Date) : Movime
 
     }
 
+    @Throws(VeiculoNaoEncontradoException::class)
     fun venderVeiculo(identificador: String, comprador: Pessoa){
         var veiculoAVender: Veiculo
         for (veiculo in veiculos) {
